@@ -22,6 +22,12 @@
     padding: 1.5rem 1rem !important; 
     width: 100%;
     overflow: visible; 
+    background-color: #FDFBF7 !important; /* Soft warm beige */
+  }
+
+  body, .main-panel, .page-body-wrapper, .sidebar {
+    background-color: #FDFBF7 !important;
+    font-family: "Inter", "Segoe UI", system-ui, sans-serif;
   }
 
   .main-panel {
@@ -31,9 +37,67 @@
     display: flex;
     flex-direction: column;
   }
+
   .table-responsive {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+  }
+
+  /* Elegant Card Styling */
+  .card {
+      border: 1px solid #F5F0E6 !important; 
+      border-radius: 1rem !important; 
+      box-shadow: 0 10px 30px rgba(94, 69, 53, 0.06) !important; 
+      background-color: #ffffff !important;
+      transition: all 0.3s ease;
+  }
+  
+  /* Text Colors */
+  h1, h2, h3, h4, h5, .card-title {
+      color: #3E2723 !important; /* Rich dark brown */
+      font-weight: 700;
+  }
+  p, small, .text-muted, td, th {
+      color: #8D6E63 !important; 
+  }
+
+  /* Table styling */
+  .table thead th {
+      background-color: #EFEBE0 !important;
+      border-bottom: 2px solid #D7CCC8 !important;
+      color: #5D4037 !important;
+  }
+  .table-hover tbody tr:hover {
+      background-color: #FDFBF7 !important;
+  }
+
+  /* Button Styling */
+  .btn-primary {
+      background-color: #5D4037 !important;
+      border-color: #5D4037 !important;
+      color: #ffffff !important;
+      border-radius: 0.5rem;
+  }
+  .btn-primary:hover {
+      background-color: #3E2723 !important;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(93, 64, 55, 0.2) !important;
+  }
+  
+  /* Sidebar Links */
+  .sidebar .nav .nav-item.active > .nav-link {
+      background-color: #EFEBE0 !important;
+      color: #5D4037 !important;
+      border-radius: 0 20px 20px 0;
+  }
+  .sidebar .nav .nav-item .nav-link i.menu-icon {
+      color: #8D6E63 !important;
+  }
+  .sidebar .nav .nav-item.active > .nav-link i.menu-icon {
+      color: #5D4037 !important;
+  }
+  .sidebar .nav .nav-item .nav-link:hover {
+      background-color: #FDFBF7 !important;
   }
 </style>
   </head>
