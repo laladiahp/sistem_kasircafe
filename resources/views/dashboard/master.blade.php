@@ -83,12 +83,32 @@
       transform: translateY(-1px);
       box-shadow: 0 4px 10px rgba(93, 64, 55, 0.2) !important;
   }
+
+  /* Outline Buttons (Akses Cepat dll) */
+  .btn-outline-primary, .btn-outline-info, .btn-outline-warning, .btn-outline-danger, .btn-outline-secondary, .btn-outline-success {
+      border: 1.5px solid #D7CCC8 !important;
+      border-radius: 0.75rem !important;
+      background-color: #ffffff !important;
+      color: #5D4037 !important;
+      font-weight: 600;
+      transition: all 0.3s ease;
+  }
+  .btn-outline-primary:hover, .btn-outline-info:hover, .btn-outline-warning:hover, .btn-outline-danger:hover, .btn-outline-secondary:hover, .btn-outline-success:hover {
+      background-color: #5D4037 !important;
+      border-color: #5D4037 !important;
+      color: #ffffff !important;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(93, 64, 55, 0.15) !important;
+  }
   
   /* Sidebar Links */
   .sidebar .nav .nav-item.active > .nav-link {
       background-color: #EFEBE0 !important;
       color: #5D4037 !important;
       border-radius: 0 20px 20px 0;
+  }
+  .sidebar .nav .nav-item.active > .nav-link .menu-title {
+      color: #5D4037 !important;
   }
   .sidebar .nav .nav-item .nav-link i.menu-icon {
       color: #8D6E63 !important;
