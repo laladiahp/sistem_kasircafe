@@ -56,28 +56,28 @@
 
           <div class="border-top mt-4 pt-3">
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-12 col-md-6">
                 <p class="mb-0"><strong>Total Pesanan:</strong></p>
               </div>
-              <div class="col-md-6 text-end">
-                <h5 class="mb-0">Rp {{ number_format($total, 0, ',', '.') }}</h5>
+              <div class="col-12 col-md-6 text-md-end">
+                <h5 class="mb-0 text-end">Rp {{ number_format($total, 0, ',', '.') }}</h5>
               </div>
             </div>
           </div>
 
-          <div class="mt-4 d-flex gap-2">
+          <div class="mt-4 d-flex gap-2 flex-wrap">
             <form action="{{ route('orders.submit', ['tableNumber' => $tableNumber]) }}" method="POST" class="flex-grow-1">
               @csrf
               <input type="hidden" name="customer_name" value="{{ $customer_name }}">
               <input type="hidden" name="notes" value="{{ $notes }}">
               <input type="hidden" name="total" value="{{ $total }}">
               <input type="hidden" name="items" value="{{ json_encode(array_map(fn($i) => ['menu_id' => $i['menu']->id, 'quantity' => $i['quantity'], 'price' => $i['price'], 'subtotal' => $i['subtotal']], $items)) }}">
-              <button type="submit" class="btn btn-primary btn-lg w-100">
-                <i class="mdi mdi-check-circle"></i> Lanjut ke Pembayaran
+              <button type="submit" class="btn btn-primary btn-lg w-100 d-flex align-items-center justify-content-center gap-2">
+                <i class="mdi mdi-check-circle"></i> <span>Lanjut ke Pembayaran</span>
               </button>
             </form>
-            <a href="{{ route('orders.table', ['tableNumber' => $tableNumber]) }}" class="btn btn-secondary btn-lg">
-              <i class="mdi mdi-arrow-left"></i> Edit
+            <a href="{{ route('orders.table', ['tableNumber' => $tableNumber]) }}" class="btn btn-secondary btn-lg d-flex align-items-center justify-content-center gap-2">
+              <i class="mdi mdi-arrow-left"></i> <span>Edit</span>
             </a>
           </div>
         </div>

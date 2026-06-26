@@ -32,18 +32,18 @@
             @csrf
 
             <div class="row mb-4">
-              <div class="col-md-6">
+              <div class="col-12 col-md-6">
                 <div class="form-group">
-                  <label class="form-label">Nama Anda</label>
-                  <input type="text" name="customer_name" class="form-control" value="{{ old('customer_name') }}" placeholder="Contoh: Budi" required>
-                  <small class="text-muted">Kami menggunakan nama ini untuk memanggil pesanan Anda</small>
+                  <label class="form-label fw-5">Nama Anda</label>
+                  <input type="text" name="customer_name" class="form-control form-control-lg" value="{{ old('customer_name') }}" placeholder="Contoh: Budi" required>
+                  <small class="text-muted d-block mt-1">Kami menggunakan nama ini untuk memanggil pesanan Anda</small>
                 </div>
               </div>
-              <div class="col-md-6">
+              <div class="col-12 col-md-6">
                 <div class="form-group">
-                  <label class="form-label">Catatan Khusus</label>
-                  <textarea name="notes" class="form-control" rows="1" placeholder="Contoh: Kurang gula, pedas level 2">{{ old('notes') }}</textarea>
-                  <small class="text-muted">Beri tahu kami tentang preferensi Anda</small>
+                  <label class="form-label fw-5">Catatan Khusus</label>
+                  <textarea name="notes" class="form-control form-control-lg" rows="2" placeholder="Contoh: Kurang gula, pedas level 2">{{ old('notes') }}</textarea>
+                  <small class="text-muted d-block mt-1">Beri tahu kami tentang preferensi Anda</small>
                 </div>
               </div>
             </div>
@@ -85,14 +85,13 @@
                       </td>
                       <td class="text-center">
                         <input type="hidden" name="items[{{ $menu->id }}][menu_id]" value="{{ $menu->id }}">
-                        <input 
-                          type="number" 
-                          name="items[{{ $menu->id }}][quantity]" 
-                          class="form-control form-control-sm text-center" 
-                          value="{{ old('items.' . $menu->id . '.quantity', 0) }}" 
+                        <input
+                          type="number"
+                          name="items[{{ $menu->id }}][quantity]"
+                          class="form-control form-control-sm text-center quantity-input"
+                          value="{{ old('items.' . $menu->id . '.quantity', 0) }}"
                           min="0"
-                          max="99"
-                          style="width: 70px; margin: 0 auto;">
+                          max="99">
                       </td>
                     </tr>
                   @empty
@@ -107,14 +106,31 @@
               </table>
             </div>
 
-            <div class="mt-4 d-flex gap-2">
-              <button type="submit" class="btn btn-primary btn-lg flex-grow-1">
-                <i class="mdi mdi-arrow-right-circle"></i> Lanjut ke Konfirmasi
+            <div class="mt-4 d-flex gap-2 flex-wrap">
+              <button type="submit" class="btn btn-primary btn-lg flex-grow-1 d-flex align-items-center justify-content-center gap-2">
+                <i class="mdi mdi-arrow-right-circle"></i> <span>Lanjut ke Konfirmasi</span>
               </button>
-              <a href="{{ route('orders.table', ['tableNumber' => $tableNumber]) }}" class="btn btn-secondary btn-lg">
-                <i class="mdi mdi-refresh"></i> Refresh
+              <a href="{{ route('orders.table', ['tableNumber' => $tableNumber]) }}" class="btn btn-secondary btn-lg d-flex align-items-center justify-content-center gap-2">
+                <i class="mdi mdi-refresh"></i> <span>Refresh</span>
               </a>
             </div>
+
+            <style>
+              @media (max-width: 575.98px) {
+                .quantity-input {
+                  width: 70px !important;
+                  margin: 0 auto !important;
+                }
+
+                .table thead {
+                  font-size: 0.85rem;
+                }
+
+                .table tbody {
+                  font-size: 0.9rem;
+                }
+              }
+            </style>
           </form>
         </div>
       </div>

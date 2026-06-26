@@ -15,13 +15,14 @@
     <link rel="stylesheet" href="{{ asset('assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/js/select.dataTables.min.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/responsive.css')}}">
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png')}}" />
 
    <style>
   .content-wrapper {
-    padding: 1.5rem 1rem !important; 
+    padding: 1.5rem 1rem !important;
     width: 100%;
-    overflow: visible; 
+    overflow: visible;
     background-color: #FDFBF7 !important; /* Soft warm beige */
   }
 
@@ -45,20 +46,20 @@
 
   /* Elegant Card Styling */
   .card {
-      border: 1px solid #F5F0E6 !important; 
-      border-radius: 1rem !important; 
-      box-shadow: 0 10px 30px rgba(94, 69, 53, 0.06) !important; 
+      border: 1px solid #F5F0E6 !important;
+      border-radius: 1rem !important;
+      box-shadow: 0 10px 30px rgba(94, 69, 53, 0.06) !important;
       background-color: #ffffff !important;
       transition: all 0.3s ease;
   }
-  
+
   /* Text Colors */
   h1, h2, h3, h4, h5, .card-title {
       color: #3E2723 !important; /* Rich dark brown */
       font-weight: 700;
   }
   p, small, .text-muted, td, th {
-      color: #8D6E63 !important; 
+      color: #8D6E63 !important;
   }
 
   /* Table styling */
@@ -100,7 +101,7 @@
       transform: translateY(-2px);
       box-shadow: 0 8px 20px rgba(93, 64, 55, 0.15) !important;
   }
-  
+
   /* Sidebar Links */
   .sidebar .nav .nav-item.active > .nav-link {
       background-color: #EFEBE0 !important;
@@ -124,7 +125,7 @@
   <body class="with-welcome-text">
     <div class="container-scroller">
       @include('dashboard.header')
-      
+
       <div class="container-fluid page-body-wrapper">
         @include('dashboard.sedebar')
 

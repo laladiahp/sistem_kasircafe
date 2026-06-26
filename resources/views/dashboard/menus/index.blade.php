@@ -87,14 +87,14 @@
                     </td>
                     <td class="text-end">
                       <div class="btn-group btn-group-sm" role="group">
-                        <a href="{{ route('admin.menus.edit', $menu) }}" class="btn btn-outline-warning" title="Edit">
-                          <i class="mdi mdi-pencil"></i>
+                        <a href="{{ route('admin.menus.edit', $menu) }}" class="btn btn-outline-warning btn-sm d-inline-flex align-items-center gap-1" title="Edit">
+                          <i class="mdi mdi-pencil"></i><span class="d-none d-md-inline">Edit</span>
                         </a>
                         <form action="{{ route('admin.menus.destroy', $menu) }}" method="POST" class="d-inline">
                           @method('DELETE')
                           @csrf
-                          <button class="btn btn-outline-danger" title="Hapus" onclick="return confirm('Hapus menu ini?')">
-                            <i class="mdi mdi-trash-can"></i>
+                          <button class="btn btn-outline-danger btn-sm d-inline-flex align-items-center gap-1" title="Hapus" onclick="return confirm('Hapus menu ini?')">
+                            <i class="mdi mdi-trash-can"></i><span class="d-none d-md-inline">Hapus</span>
                           </button>
                         </form>
                       </div>

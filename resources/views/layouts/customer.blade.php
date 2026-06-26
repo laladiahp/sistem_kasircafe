@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{ asset('assets/vendors/mdi/css/materialdesignicons.min.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendor.bundle.base.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/responsive.css')}}">
     <style>
         body {
             background: #f8f9fa;
