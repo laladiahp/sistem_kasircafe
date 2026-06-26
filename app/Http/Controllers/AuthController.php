@@ -27,16 +27,14 @@ class AuthController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
-        $user = User::create([
+        User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
             'role' => User::ROLE_ADMIN,
         ]);
 
-        Auth::login($user);
-
-        return redirect()->intended(route('auth.login'))->with('success', 'Registrasi berhasil. Selamat datang ke dashboard admin.');
+        return redirect()->route('login')->with('success', 'Registrasi berhasil. Silakan login untuk melanjutkan.');
     }
 
     public function authenticate(Request $request)
