@@ -36,7 +36,7 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect()->intended(route('admin.dashboard'))->with('success', 'Registrasi berhasil. Selamat datang ke dashboard admin.');
+        return redirect()->intended(route('auth.login'))->with('success', 'Registrasi berhasil. Selamat datang ke dashboard admin.');
     }
 
     public function authenticate(Request $request)
