@@ -27,27 +27,24 @@
 
           <h5 class="mt-4 mb-3">Detail Pesanan</h5>
           <div class="table-responsive">
-            <table class="table table-bordered mb-0">
+            <table class="table table-borderless mb-0">
               <thead class="table-light">
                 <tr>
                   <th>Menu</th>
-                  <th class="text-center">Qty</th>
                   <th class="text-end">Harga</th>
-                  <th class="text-end">Subtotal</th>
+                  <th class="text-center" style="width:120px">Jumlah</th>
                 </tr>
               </thead>
               <tbody>
                 @foreach($items as $item)
                   <tr>
-                    <td>
+                    <td class="align-middle">
                       <div>
-                        <h6 class="mb-0">{{ $item['menu']->name }}</h6>
-                        <small class="text-muted">{{ $item['menu']->category?->name ?? '-' }}</small>
+                        <strong>{{ $item['menu']->name }}</strong>
                       </div>
                     </td>
-                    <td class="text-center">{{ $item['quantity'] }}</td>
-                    <td class="text-end">Rp {{ number_format($item['price'], 0, ',', '.') }}</td>
-                    <td class="text-end">Rp {{ number_format($item['subtotal'], 0, ',', '.') }}</td>
+                    <td class="text-end align-middle">Rp {{ number_format($item['price'], 0, ',', '.') }}</td>
+                    <td class="text-center align-middle">{{ $item['quantity'] }}</td>
                   </tr>
                 @endforeach
               </tbody>
