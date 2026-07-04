@@ -131,6 +131,41 @@
               }
             </style>
 
+            <style>
+              /* Mobile: convert table rows into card-like list for better touch layout */
+              @media (max-width: 576px) {
+                .table-responsive table thead { display: none; }
+                .table-responsive table tbody { display: block; }
+                .table-responsive table tbody tr {
+                  display: flex;
+                  gap: 8px;
+                  align-items: center;
+                  padding: 10px 0;
+                  border-bottom: 1px solid #f0f0f0;
+                }
+
+                .table-responsive table tbody td { display: inline-block; vertical-align: middle; }
+
+                .menu-thumb { flex: 0 0 60px; }
+                .menu-thumb img, .menu-thumb .placeholder {
+                  width: 60px; height: 60px; border-radius: 6px; object-fit: cover;
+                }
+
+                .menu-info { flex: 1 1 auto; min-width: 0; }
+                .menu-info h6 { margin: 0; font-size: 1rem; }
+                .menu-info small { display: block; color: #6c757d; font-size: 0.85rem; }
+
+                .menu-price { flex: 0 0 90px; text-align: right; font-weight: 600; }
+
+                .quantity-controls { flex: 0 0 110px; display:flex; align-items:center; justify-content:flex-end; }
+                .quantity-controls .btn { padding: 6px 10px; }
+                .quantity-display { width:44px; }
+
+                /* Improve hit target for +/- */
+                .btn-decrease, .btn-increase { min-width:40px; height:40px; }
+              }
+            </style>
+
             <script>
               document.addEventListener('DOMContentLoaded', function () {
                 document.querySelectorAll('.btn-decrease, .btn-increase').forEach(function (button) {

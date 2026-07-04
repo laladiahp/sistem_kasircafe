@@ -99,20 +99,32 @@
               }
               .table-responsive table tbody tr {
                 display: flex;
-                flex-direction: column;
-                gap: 6px;
+                gap: 8px;
+                align-items: center;
                 padding: 8px 0;
                 border-bottom: 1px solid #f0f0f0;
               }
               .table-responsive table tbody td {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
+                display: inline-block;
+                vertical-align: middle;
                 padding: 2px 0;
               }
               .table-responsive table tbody td strong {
                 font-size: 1rem;
               }
+            }
+          </style>
+
+          <style>
+            /* Additional mobile tweaks for confirmation page */
+            @media (max-width: 576px) {
+              .table-responsive table tbody tr { display:flex; gap:10px; }
+              .table-responsive table tbody td:first-child { flex:1 1 auto; }
+              .table-responsive table tbody td:nth-child(2) { flex:0 0 90px; text-align:right; }
+              .table-responsive table tbody td:nth-child(3) { flex:0 0 60px; text-align:center; }
+              .border-top .row { gap:8px; }
+              .card-body { padding: 12px; }
+              #confirm-submit-btn { padding: 12px 14px; }
             }
           </style>
         </div>
