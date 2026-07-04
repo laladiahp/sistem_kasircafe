@@ -46,29 +46,29 @@
                     <tr>
                       <td>
                         <div class="d-flex align-items-center gap-3">
-                          @if($menu->image)
-                            <img src="{{ asset('storage/' . $menu->image) }}" alt="{{ $menu->name }}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 6px;">
-                          @else
-                            <div style="width: 60px; height: 60px; background: #e9ecef; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                              <i class="mdi mdi-image-off" style="color: #999; font-size: 1.5rem;\"></i>
-                            </div>
-                          @endif
-                          <div>
-                            <h6 class="mb-0">{{ $menu->name }}</h6>
-                            <small class="text-muted">{{ $menu->description ?? 'Deskripsi tidak tersedia' }}</small>
+                          <div class="menu-thumb">
+                            @if($menu->image)
+                              <img src="{{ asset('storage/' . $menu->image) }}" alt="{{ $menu->name }}">
+                            @else
+                              <div class="placeholder"></div>
+                            @endif
+                          </div>
+                          <div class="menu-info">
+                            <h6 class="mb-0">{{ $menu->name }} <span class="badge bg-light text-dark ms-2 d-none d-sm-inline">{{ $menu->category?->name ?? '-' }}</span></h6>
+                            <small class="text-muted d-block text-truncate">{{ $menu->description ?? 'Deskripsi tidak tersedia' }}</small>
                           </div>
                         </div>
                       </td>
-                      <td>
+                      <td class="d-none d-sm-table-cell">
                         <span class="badge bg-light text-dark">{{ $menu->category?->name ?? '-' }}</span>
                       </td>
-                      <td class="text-end">
+                      <td class="text-end menu-price">
                         <strong>Rp {{ number_format($menu->price, 0, ',', '.') }}</strong>
                       </td>
-                      <td class="text-center">
+                      <td class="text-center quantity-controls">
                         <input type="hidden" name="items[{{ $menu->id }}][menu_id]" value="{{ $menu->id }}">
 
-                        <div class="d-flex justify-content-center">
+                        <div class="d-flex justify-content-center align-items-center">
                           <div class="input-group input-group-sm" style="width:140px;">
                             <button type="button" class="btn btn-outline-secondary btn-decrease" data-menu-id="{{ $menu->id }}">-</button>
                             <input type="text" readonly class="form-control text-center quantity-display" data-menu-id="{{ $menu->id }}" value="{{ old('items.' . $menu->id . '.quantity', 0) }}" style="max-width:60px;">
@@ -148,12 +148,12 @@
 
                 .menu-thumb { flex: 0 0 60px; }
                 .menu-thumb img, .menu-thumb .placeholder {
-                  width: 60px; height: 60px; border-radius: 6px; object-fit: cover;
+                  width: 60px; height: 60px; border-radius: 6px; object-fit: cover; background: #e9ecef;
                 }
 
-                .menu-info { flex: 1 1 auto; min-width: 0; }
-                .menu-info h6 { margin: 0; font-size: 1rem; }
-                .menu-info small { display: block; color: #6c757d; font-size: 0.85rem; }
+                .menu-info { flex: 1 1 auto; min-width: 0; overflow: hidden; }
+                .menu-info h6 { margin: 0; font-size: 1rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+                .menu-info small { display: block; color: #6c757d; font-size: 0.85rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
                 .menu-price { flex: 0 0 90px; text-align: right; font-weight: 600; }
 
@@ -163,6 +163,9 @@
 
                 /* Improve hit target for +/- */
                 .btn-decrease, .btn-increase { min-width:40px; height:40px; }
+
+                /* badge spacing */
+                .menu-info .badge { margin-left: 8px; }
               }
             </style>
 
