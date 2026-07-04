@@ -41,11 +41,11 @@
                     <td>{{ $table->label ?? '-' }}</td>
                     <td>
                       <div class="d-flex flex-column align-items-center gap-2 py-2">
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{ urlencode(route('orders.table', ['tableNumber' => $table->number])) }}" 
-                             alt="QR Meja {{ $table->number }}" 
-                             class="border p-2 bg-white rounded shadow-sm" 
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{ urlencode(route('orders.table', ['tableNumber' => $table->number])) }}"
+                             alt="QR Meja {{ $table->number }}"
+                             class="border p-2 bg-white rounded shadow-sm"
                              style="width: 100px; height: 100px; object-fit: contain;">
-                        
+
                         <div class="d-flex gap-1">
                           <a href="{{ route('orders.table', ['tableNumber' => $table->number]) }}" target="_blank" class="btn btn-xs btn-outline-primary py-1 px-2" style="font-size: 11px; font-weight: 600;">
                             <i class="mdi mdi-open-in-new"></i> Buka
