@@ -167,6 +167,29 @@
                 /* badge spacing */
                 .menu-info .badge { margin-left: 8px; }
               }
+
+              /* Force input-group to stay horizontal and prevent vertical stacking */
+              .input-group.input-group-sm {
+                display: flex !important;
+                flex-direction: row !important;
+                flex-wrap: nowrap !important;
+                align-items: center !important;
+                gap: 6px;
+              }
+
+              .input-group.input-group-sm .form-control {
+                flex: 0 0 44px !important;
+                width: 44px !important;
+                text-align: center !important;
+                padding: .375rem .5rem !important;
+              }
+
+              .input-group.input-group-sm .btn {
+                display: inline-flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                padding: .375rem .6rem !important;
+              }
             </style>
 
             <script>
