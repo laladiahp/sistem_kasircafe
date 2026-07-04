@@ -28,8 +28,10 @@
             </div>
           @endif
 
-            <h5 class="mb-3">Daftar Menu</h5>
-            <div class="table-responsive">
+            <form action="{{ route('orders.confirm', ['tableNumber' => $tableNumber]) }}" method="POST">
+              @csrf
+              <h5 class="mb-3">Daftar Menu</h5>
+              <div class="table-responsive">
               <table class="table table-hover mb-0">
                 <thead class="table-light">
                   <tr>
