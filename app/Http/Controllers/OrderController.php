@@ -54,6 +54,10 @@ class OrderController extends Controller
             ];
         }
 
+        // create one-time submission token to prevent duplicate server-side submits
+        $submissionToken = bin2hex(random_bytes(8));
+        session()->put('order_submission_token_' . $submissionToken, true);
+
         return view('orders.confirm', [
             'table' => $table,
             'tableNumber' => $tableNumber,
@@ -61,6 +65,7 @@ class OrderController extends Controller
             'notes' => $validated['notes'],
             'items' => $orderItems,
             'total' => $total,
+            'submissionToken' => $submissionToken,
         ]);
     }
 
@@ -71,7 +76,16 @@ class OrderController extends Controller
             'notes' => 'nullable|string|max:500',
             'items' => 'required|json',
             'total' => 'required|numeric|min:0',
+            'submission_token' => 'required|string',
         ]);
+
+        // validate submission token to avoid duplicate orders
+        $tokenKey = 'order_submission_token_' . $validated['submission_token'];
+        if (!session()->has($tokenKey)) {
+            return redirect()->route('orders.table', ['tableNumber' => $tableNumber])->with('error', 'Pesanan sudah dikirim atau token tidak valid.');
+        }
+        // consume token
+        session()->forget($tokenKey);
 
         $items = json_decode($validated['items'], true);
 

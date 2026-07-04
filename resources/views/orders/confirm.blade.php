@@ -69,6 +69,7 @@
               <input type="hidden" name="notes" value="{{ $notes }}">
               <input type="hidden" name="total" value="{{ $total }}">
               <input type="hidden" name="items" value="{{ json_encode(array_map(fn($i) => ['menu_id' => $i['menu']->id, 'quantity' => $i['quantity'], 'price' => $i['price'], 'subtotal' => $i['subtotal']], $items)) }}">
+              <input type="hidden" name="submission_token" value="{{ $submissionToken ?? '' }}">
               <button id="confirm-submit-btn" type="submit" class="btn btn-primary btn-lg w-100 d-flex align-items-center justify-content-center gap-2">
                 <i class="mdi mdi-check-circle"></i> <span>Lanjut ke Pembayaran</span>
               </button>
@@ -90,6 +91,30 @@
               }
             });
           </script>
+          <style>
+            /* Mobile: make order list compact and avoid stacked cells */
+            @media (max-width: 576px) {
+              .table-responsive table thead {
+                display: none;
+              }
+              .table-responsive table tbody tr {
+                display: flex;
+                flex-direction: column;
+                gap: 6px;
+                padding: 8px 0;
+                border-bottom: 1px solid #f0f0f0;
+              }
+              .table-responsive table tbody td {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 2px 0;
+              }
+              .table-responsive table tbody td strong {
+                font-size: 1rem;
+              }
+            }
+          </style>
         </div>
       </div>
     </div>
