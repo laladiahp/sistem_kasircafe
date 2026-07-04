@@ -46,12 +46,14 @@
                              class="border p-2 bg-white rounded shadow-sm" 
                              style="width: 100px; height: 100px; object-fit: contain;">
                         
-                        <a href="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data={{ urlencode(route('orders.table', ['tableNumber' => $table->number])) }}" 
-                           target="_blank" 
-                           class="btn btn-xs btn-outline-primary py-1 px-2" 
-                           style="font-size: 11px; font-weight: 600; text-decoration: none;">
-                           <i class="mdi mdi-printer"></i> Buka & Cetak
-                        </a>
+                        <div class="d-flex gap-1">
+                          <a href="{{ route('orders.table', ['tableNumber' => $table->number]) }}" target="_blank" class="btn btn-xs btn-outline-primary py-1 px-2" style="font-size: 11px; font-weight: 600;">
+                            <i class="mdi mdi-open-in-new"></i> Buka
+                          </a>
+                          <button type="button" class="btn btn-xs btn-outline-secondary py-1 px-2" data-clipboard-text="{{ route('orders.table', ['tableNumber' => $table->number]) }}" onclick="navigator.clipboard.writeText('{{ route('orders.table', ['tableNumber' => $table->number]) }}')">
+                            <i class="mdi mdi-clipboard-outline"></i> Salin URL
+                          </button>
+                        </div>
                       </div>
                     </td>
                     <td class="text-end">

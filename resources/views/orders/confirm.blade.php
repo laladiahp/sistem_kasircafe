@@ -63,13 +63,13 @@
           </div>
 
           <div class="mt-4 d-flex gap-2 flex-wrap">
-            <form action="{{ route('orders.submit', ['tableNumber' => $tableNumber]) }}" method="POST" class="flex-grow-1">
+            <form id="confirm-submit-form" action="{{ route('orders.submit', ['tableNumber' => $tableNumber]) }}" method="POST" class="flex-grow-1">
               @csrf
               <input type="hidden" name="customer_name" value="{{ $customer_name }}">
               <input type="hidden" name="notes" value="{{ $notes }}">
               <input type="hidden" name="total" value="{{ $total }}">
               <input type="hidden" name="items" value="{{ json_encode(array_map(fn($i) => ['menu_id' => $i['menu']->id, 'quantity' => $i['quantity'], 'price' => $i['price'], 'subtotal' => $i['subtotal']], $items)) }}">
-              <button type="submit" class="btn btn-primary btn-lg w-100 d-flex align-items-center justify-content-center gap-2">
+              <button id="confirm-submit-btn" type="submit" class="btn btn-primary btn-lg w-100 d-flex align-items-center justify-content-center gap-2">
                 <i class="mdi mdi-check-circle"></i> <span>Lanjut ke Pembayaran</span>
               </button>
             </form>
@@ -77,6 +77,19 @@
               <i class="mdi mdi-arrow-left"></i> <span>Edit</span>
             </a>
           </div>
+          <script>
+            // Prevent double submission which can create duplicate orders
+            document.addEventListener('DOMContentLoaded', function () {
+              var form = document.getElementById('confirm-submit-form');
+              var btn = document.getElementById('confirm-submit-btn');
+              if (form && btn) {
+                form.addEventListener('submit', function (e) {
+                  btn.disabled = true;
+                  btn.innerHTML = '<i class="mdi mdi-spin mdi-loading"></i> Processing...';
+                });
+              }
+            });
+          </script>
         </div>
       </div>
     </div>
