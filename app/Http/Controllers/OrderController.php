@@ -61,8 +61,8 @@ class OrderController extends Controller
         return view('orders.confirm', [
             'table' => $table,
             'tableNumber' => $tableNumber,
-            'customer_name' => $validated['customer_name'],
-            'notes' => $validated['notes'],
+            'customer_name' => $validated['customer_name'] ?? null,
+            'notes' => $validated['notes'] ?? null,
             'items' => $orderItems,
             'total' => $total,
             'submissionToken' => $submissionToken,
