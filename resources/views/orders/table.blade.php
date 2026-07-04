@@ -28,26 +28,6 @@
             </div>
           @endif
 
-          <form action="{{ route('orders.confirm', ['tableNumber' => $tableNumber]) }}" method="POST">
-            @csrf
-
-            <div class="row mb-4">
-              <div class="col-12 col-md-6">
-                <div class="form-group">
-                  <label class="form-label fw-5">Nama Anda</label>
-                  <input type="text" name="customer_name" class="form-control form-control-lg" value="{{ old('customer_name') }}" placeholder="Contoh: Budi" required>
-                  <small class="text-muted d-block mt-1">Kami menggunakan nama ini untuk memanggil pesanan Anda</small>
-                </div>
-              </div>
-              <div class="col-12 col-md-6">
-                <div class="form-group">
-                  <label class="form-label fw-5">Catatan Khusus</label>
-                  <textarea name="notes" class="form-control form-control-lg" rows="2" placeholder="Contoh: Kurang gula, pedas level 2">{{ old('notes') }}</textarea>
-                  <small class="text-muted d-block mt-1">Beri tahu kami tentang preferensi Anda</small>
-                </div>
-              </div>
-            </div>
-
             <h5 class="mb-3">Daftar Menu</h5>
             <div class="table-responsive">
               <table class="table table-hover mb-0">
@@ -85,13 +65,16 @@
                       </td>
                       <td class="text-center">
                         <input type="hidden" name="items[{{ $menu->id }}][menu_id]" value="{{ $menu->id }}">
-                        <input
-                          type="number"
-                          name="items[{{ $menu->id }}][quantity]"
-                          class="form-control form-control-sm text-center quantity-input"
-                          value="{{ old('items.' . $menu->id . '.quantity', 0) }}"
-                          min="0"
-                          max="99">
+
+                        <div class="d-flex justify-content-center">
+                          <div class="input-group input-group-sm" style="width:140px;">
+                            <button type="button" class="btn btn-outline-secondary btn-decrease" data-menu-id="{{ $menu->id }}">-</button>
+                            <input type="text" readonly class="form-control text-center quantity-display" data-menu-id="{{ $menu->id }}" value="{{ old('items.' . $menu->id . '.quantity', 0) }}" style="max-width:60px;">
+                            <button type="button" class="btn btn-outline-secondary btn-increase" data-menu-id="{{ $menu->id }}">+</button>
+                          </div>
+                        </div>
+
+                        <input type="hidden" name="items[{{ $menu->id }}][quantity]" value="{{ old('items.' . $menu->id . '.quantity', 0) }}" class="quantity-hidden" data-menu-id="{{ $menu->id }}" min="0" max="99">
                       </td>
                     </tr>
                   @empty
@@ -116,9 +99,23 @@
             </div>
 
             <style>
+              .quantity-input {
+                width: 55px !important;
+                margin: 0 auto !important;
+              }
+
+              .quantity-btn {
+                width: 32px;
+                height: 32px;
+                padding: 0;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+              }
+
               @media (max-width: 575.98px) {
                 .quantity-input {
-                  width: 70px !important;
+                  width: 50px !important;
                   margin: 0 auto !important;
                 }
 
@@ -131,6 +128,28 @@
                 }
               }
             </style>
+
+            <script>
+              document.addEventListener('DOMContentLoaded', function () {
+                document.querySelectorAll('.btn-decrease, .btn-increase').forEach(function (button) {
+                  button.addEventListener('click', function () {
+                    const menuId = this.dataset.menuId;
+                    const delta = this.classList.contains('btn-increase') ? 1 : -1;
+                    const display = document.querySelector('.quantity-display[data-menu-id="' + menuId + '"]');
+                    const hidden = document.querySelector('.quantity-hidden[data-menu-id="' + menuId + '"]');
+
+                    if (!display || !hidden) {
+                      return;
+                    }
+
+                    let current = parseInt(display.value || hidden.value || 0, 10);
+                    current = Math.min(99, Math.max(0, current + delta));
+                    display.value = current;
+                    hidden.value = current;
+                  });
+                });
+              });
+            </script>
           </form>
         </div>
       </div>

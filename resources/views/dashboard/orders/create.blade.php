@@ -104,14 +104,16 @@
                       </td>
                       <td class="text-center">
                         <input type="hidden" name="items[{{ $menu->id }}][menu_id]" value="{{ $menu->id }}">
-                        <input
-                          type="number"
-                          name="items[{{ $menu->id }}][quantity]"
-                          class="form-control form-control-sm text-center"
-                          value="{{ old('items.' . $menu->id . '.quantity', 0) }}"
-                          min="0"
-                          max="99"
-                          style="width: 70px; margin: 0 auto;">
+
+                        <div class="d-flex justify-content-center">
+                          <div class="input-group input-group-sm" style="width:140px;">
+                            <button type="button" class="btn btn-outline-secondary btn-decrease" data-menu-id="{{ $menu->id }}">-</button>
+                            <input type="text" readonly class="form-control text-center quantity-display" data-menu-id="{{ $menu->id }}" value="{{ old('items.' . $menu->id . '.quantity', 0) }}" style="max-width:60px;">
+                            <button type="button" class="btn btn-outline-secondary btn-increase" data-menu-id="{{ $menu->id }}">+</button>
+                          </div>
+                        </div>
+
+                        <input type="hidden" name="items[{{ $menu->id }}][quantity]" value="{{ old('items.' . $menu->id . '.quantity', 0) }}" class="quantity-hidden" data-menu-id="{{ $menu->id }}" min="0" max="99">
                       </td>
                     </tr>
                   @empty
@@ -134,6 +136,35 @@
                 <i class="mdi mdi-close"></i> Batal
               </a>
             </div>
+
+            <script>
+              document.addEventListener('DOMContentLoaded', function () {
+                function updateQuantity(menuId, delta) {
+                  const display = document.querySelector('.quantity-display[data-menu-id="' + menuId + '"]');
+                  const hidden = document.querySelector('.quantity-hidden[data-menu-id="' + menuId + '"]');
+                  if (!display || !hidden) return;
+
+                  const min = parseInt(hidden.getAttribute('min') || 0, 10);
+                  const max = parseInt(hidden.getAttribute('max') || 99, 10);
+                  let value = parseInt(hidden.value || 0, 10);
+                  value = Math.min(max, Math.max(min, value + delta));
+                  hidden.value = value;
+                  display.value = value;
+                }
+
+                document.querySelectorAll('.btn-increase').forEach(function (btn) {
+                  btn.addEventListener('click', function () {
+                    updateQuantity(this.dataset.menuId, 1);
+                  });
+                });
+
+                document.querySelectorAll('.btn-decrease').forEach(function (btn) {
+                  btn.addEventListener('click', function () {
+                    updateQuantity(this.dataset.menuId, -1);
+                  });
+                });
+              });
+            </script>
           </form>
         </div>
       </div>

@@ -33,11 +33,9 @@ class MenuController extends Controller
             'status' => 'required|in:active,inactive',
         ]);
 
-        $data = $request->all();
-
-    // Logika upload gambar otomatis oleh Laravel
+        // Jika ada file gambar, simpan path ke array validasi
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('menus', 'public');
+            $validated['image'] = $request->file('image')->store('menus', 'public');
         }
 
         Menu::create($validated);
