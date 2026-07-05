@@ -115,6 +115,11 @@
                 justify-content: center;
               }
 
+              .menu-info .badge {
+                display: none !important;
+                margin-left: 8px;
+              }
+
               @media (max-width: 575.98px) {
                 .quantity-input {
                   width: 50px !important;
@@ -163,12 +168,6 @@
 
                 /* Improve hit target for +/- */
                 .btn-decrease, .btn-increase { min-width:40px; height:40px; }
-
-                /* badge spacing */
-                .menu-info .badge {
-                  display: none;
-                  margin-left: 8px;
-                }
               }
 
               /* Force input-group to stay horizontal and prevent vertical stacking */
