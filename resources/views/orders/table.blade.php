@@ -54,7 +54,7 @@
                             @endif
                           </div>
                           <div class="menu-info">
-                            <h6 class="mb-0">{{ $menu->name }} <span class="badge bg-light text-dark ms-2 d-none d-sm-inline">{{ $menu->category?->name ?? '-' }}</span></h6>
+                            <h6 class="mb-0">{{ $menu->name }}</h6>
                             <small class="text-muted d-block text-truncate">{{ $menu->description ?? 'Deskripsi tidak tersedia' }}</small>
                           </div>
                         </div>
@@ -165,7 +165,10 @@
                 .btn-decrease, .btn-increase { min-width:40px; height:40px; }
 
                 /* badge spacing */
-                .menu-info .badge { margin-left: 8px; }
+                .menu-info .badge {
+                  display: none;
+                  margin-left: 8px;
+                }
               }
 
               /* Force input-group to stay horizontal and prevent vertical stacking */

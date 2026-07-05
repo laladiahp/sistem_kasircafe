@@ -9,12 +9,6 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ url('/admin/reports') }}">
-                    <i class="mdi mdi-chart-line menu-icon"></i>
-                    <span class="menu-title">Laporan</span>
-                  </a>
-                </li>
-                <li class="nav-item">
                   <a class="nav-link" href="{{ url('/admin/orders') }}">
                     <i class="mdi mdi-clipboard-list menu-icon"></i>
                     <span class="menu-title">Pesanan / Antrian</span>
@@ -36,6 +30,12 @@
                   <a class="nav-link" href="{{ url('/admin/categories') }}">
                     <i class="mdi mdi-shape menu-icon"></i>
                     <span class="menu-title">Kategori</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url('/admin/reports') }}">
+                    <i class="mdi mdi-chart-line menu-icon"></i>
+                    <span class="menu-title">Laporan</span>
                   </a>
                 </li>
               @endif

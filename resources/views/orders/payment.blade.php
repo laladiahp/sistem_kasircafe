@@ -60,36 +60,36 @@
 
             <div class="form-group mb-3">
               <label class="form-label">Pilih Metode Pembayaran</label>
-              <div class="row g-2">
-                <div class="col-6">
-                  <div class="form-check">
-                    <input class="form-check-input payment-method" type="radio" name="payment_method" id="gopay" value="gopay" required>
-                    <label class="form-check-label w-100" for="gopay">
-                      <div class="card border text-center py-3" style="cursor: pointer;">
+              <div class="row g-3">
+                <div class="col-12 col-md-4">
+                  <div class="form-check h-100">
+                    <input class="form-check-input payment-method visually-hidden" type="radio" name="payment_method" id="gopay" value="gopay" required>
+                    <label class="form-check-label w-100 h-100" for="gopay">
+                      <div class="card border text-center py-4 h-100 payment-option-card">
                         <i class="mdi mdi-wallet-giftcard" style="font-size: 2rem; color: #00A699;"></i>
-                        <div class="small mt-2"><strong>GoPay</strong></div>
+                        <div class="small mt-3"><strong>GoPay</strong></div>
                       </div>
                     </label>
                   </div>
                 </div>
-                <div class="col-6">
-                  <div class="form-check">
-                    <input class="form-check-input payment-method" type="radio" name="payment_method" id="dana" value="dana" required>
-                    <label class="form-check-label w-100" for="dana">
-                      <div class="card border text-center py-3" style="cursor: pointer;">
+                <div class="col-12 col-md-4">
+                  <div class="form-check h-100">
+                    <input class="form-check-input payment-method visually-hidden" type="radio" name="payment_method" id="dana" value="dana" required>
+                    <label class="form-check-label w-100 h-100" for="dana">
+                      <div class="card border text-center py-4 h-100 payment-option-card">
                         <i class="mdi mdi-wallet-giftcard" style="font-size: 2rem; color: #3E54F3;"></i>
-                        <div class="small mt-2"><strong>Dana</strong></div>
+                        <div class="small mt-3"><strong>Dana</strong></div>
                       </div>
                     </label>
                   </div>
                 </div>
-                <div class="col-6">
-                  <div class="form-check">
-                    <input class="form-check-input payment-method" type="radio" name="payment_method" id="cash" value="cash" required>
-                    <label class="form-check-label w-100" for="cash">
-                      <div class="card border text-center py-3" style="cursor: pointer;">
+                <div class="col-12 col-md-4">
+                  <div class="form-check h-100">
+                    <input class="form-check-input payment-method visually-hidden" type="radio" name="payment_method" id="cash" value="cash" required>
+                    <label class="form-check-label w-100 h-100" for="cash">
+                      <div class="card border text-center py-4 h-100 payment-option-card">
                         <i class="mdi mdi-cash" style="font-size: 2rem; color: #28A745;"></i>
-                        <div class="small mt-2"><strong>Cash</strong></div>
+                        <div class="small mt-3"><strong>Cash</strong></div>
                       </div>
                     </label>
                   </div>
@@ -174,7 +174,7 @@
 
     document.getElementById('selected-method-label').textContent = data.label;
     document.getElementById('selected-method-badge').textContent = data.label;
-    
+
     if (data.isCash) {
       // Untuk cash, tampilkan instruksi khusus
       document.getElementById('selected-method-badge').classList.remove('bg-secondary', 'bg-success');
@@ -210,5 +210,59 @@
     document.getElementById('selected-method-badge').classList.remove('bg-success');
     document.getElementById('selected-method-badge').classList.add('bg-secondary');
   }
+
+  const cardChange = (input) => {
+    document.querySelectorAll('.payment-option-card').forEach(card => {
+      card.classList.remove('payment-option-selected');
+    });
+    const selectedCard = input.closest('.form-check').querySelector('.payment-option-card');
+    if (selectedCard) {
+      selectedCard.classList.add('payment-option-selected');
+    }
+  };
+
+  document.querySelectorAll('.payment-method').forEach(el => {
+    el.addEventListener('change', function() {
+      cardChange(this);
+    });
+    if (el.checked) {
+      cardChange(el);
+    }
+  });
 </script>
+
+<style>
+  .payment-option-card {
+    min-height: 150px;
+    transition: transform .16s ease, border-color .16s ease, box-shadow .16s ease, background-color .16s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: .75rem;
+    padding: 1.25rem 1rem;
+  }
+  .payment-option-card:hover {
+    transform: translateY(-2px);
+    border-color: #198754;
+    box-shadow: 0 12px 25px rgba(0, 0, 0, .06);
+  }
+  .payment-option-selected {
+    border-color: #198754 !important;
+    background-color: #f3fbf6 !important;
+    box-shadow: 0 10px 28px rgba(25, 135, 84, .12);
+  }
+  .payment-method-label {
+    cursor: pointer;
+    display: block;
+  }
+  .payment-method-label .payment-option-card {
+    width: 100%;
+  }
+  @media (max-width: 767.98px) {
+    .payment-option-card {
+      min-height: 140px;
+    }
+  }
+</style>
 @endsection
