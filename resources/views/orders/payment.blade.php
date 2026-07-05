@@ -29,28 +29,21 @@
           <div class="card border mb-4">
             <div class="card-body">
               <h6 class="card-title mb-3">Ringkasan Pesanan</h6>
-              <div class="table-responsive mb-0">
+              <div class="table-responsive mb-3">
                 <table class="table table-borderless table-sm mb-0">
                   <tbody>
                     @foreach($order->items as $item)
                       <tr>
-                        <td>{{ $item->menu?->name }} (x{{ $item->quantity }})</td>
-                        <td class="text-end">Rp {{ number_format($item->subtotal, 0, ',', '.') }}</td>
+                        <td class="text-truncate" style="max-width: 280px;">{{ $item->menu?->name }} <span class="text-muted">(x{{ $item->quantity }})</span></td>
+                        <td class="text-end fw-semibold">Rp {{ number_format($item->subtotal, 0, ',', '.') }}</td>
                       </tr>
                     @endforeach
                   </tbody>
                 </table>
               </div>
-            </div>
-          </div>
-
-          <div class="border-top border-bottom py-3 mb-4">
-            <div class="row align-items-center">
-              <div class="col-6">
-                <p class="mb-0"><strong>Total Pembayaran:</strong></p>
-              </div>
-              <div class="col-6 text-end">
-                <h4 class="mb-0" style="color: #198754;">Rp {{ number_format($order->total, 0, ',', '.') }}</h4>
+              <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+                <span class="text-muted">Total Pembayaran</span>
+                <span class="fs-5 fw-bold text-success">Rp {{ number_format($order->total, 0, ',', '.') }}</span>
               </div>
             </div>
           </div>
