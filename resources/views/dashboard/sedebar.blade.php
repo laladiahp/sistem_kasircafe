@@ -2,37 +2,37 @@
           <ul class="nav">
             @auth
               @if(auth()->user()->isAdmin())
-                <li class="nav-item {{ request()->is('admin') ? 'active' : '' }}">
+                <li class="nav-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
                   <a class="nav-link" href="{{ url('/admin') }}">
                     <i class="mdi mdi-grid-large menu-icon"></i>
                     <span class="menu-title">Dashboard Admin</span>
                   </a>
                 </li>
-                <li class="nav-item {{ request()->is('admin/orders*') ? 'active' : '' }}">
+                <li class="nav-item {{ request()->routeIs('admin.orders.*') ? 'active' : '' }}">
                   <a class="nav-link" href="{{ url('/admin/orders') }}">
                     <i class="mdi mdi-clipboard-list menu-icon"></i>
                     <span class="menu-title">Pesanan / Antrian</span>
                   </a>
                 </li>
-                <li class="nav-item {{ request()->is('admin/tables*') ? 'active' : '' }}">
+                <li class="nav-item {{ request()->routeIs('admin.tables.*') ? 'active' : '' }}">
                   <a class="nav-link" href="{{ url('/admin/tables') }}">
                     <i class="mdi mdi-qrcode-scan menu-icon"></i>
                     <span class="menu-title">Meja / QR Code</span>
                   </a>
                 </li>
-                <li class="nav-item {{ request()->is('admin/menus*') ? 'active' : '' }}">
+                <li class="nav-item {{ request()->routeIs('admin.menus.*') ? 'active' : '' }}">
                   <a class="nav-link" href="{{ url('/admin/menus') }}">
                     <i class="mdi mdi-silverware-fork-knife menu-icon"></i>
                     <span class="menu-title">Menu</span>
                   </a>
                 </li>
-                <li class="nav-item {{ request()->is('admin/categories*') ? 'active' : '' }}">
+                <li class="nav-item {{ request()->routeIs('admin.categories.*') ? 'active' : '' }}">
                   <a class="nav-link" href="{{ url('/admin/categories') }}">
                     <i class="mdi mdi-shape menu-icon"></i>
                     <span class="menu-title">Kategori</span>
                   </a>
                 </li>
-                <li class="nav-item {{ request()->is('admin/reports*') ? 'active' : '' }}">
+                <li class="nav-item {{ request()->routeIs('admin.reports.*') ? 'active' : '' }}">
                   <a class="nav-link" href="{{ url('/admin/reports') }}">
                     <i class="mdi mdi-chart-line menu-icon"></i>
                     <span class="menu-title">Laporan</span>

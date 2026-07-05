@@ -22,6 +22,16 @@
             </div>
           </form>
 
+          <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between mb-4 gap-2">
+            <div>
+              <h6 class="mb-1">Periode Laporan</h6>
+              <p class="mb-0 text-muted">
+                {{ optional($start)->format('d M Y') ?? '—' }} sampai {{ optional($end)->format('d M Y') ?? '—' }}
+              </p>
+            </div>
+            <div class="text-muted small">Data diperbarui sesuai rentang tanggal yang dipilih.</div>
+          </div>
+
           <div class="chart-container mb-4">
             <canvas id="salesChart"></canvas>
           </div>
