@@ -51,83 +51,97 @@
           <form action="{{ route('orders.process-payment', ['orderId' => $order->id]) }}" method="POST">
             @csrf
 
-            <div class="form-group mb-3">
-              <label class="form-label">Pilih Metode Pembayaran</label>
-              <div class="row g-3">
-                <div class="col-12 col-md-4">
-                  <div class="form-check h-100">
-                    <input class="form-check-input payment-method visually-hidden" type="radio" name="payment_method" id="gopay" value="gopay" required>
-                    <label class="form-check-label w-100 h-100" for="gopay">
-                      <div class="card border text-center py-4 h-100 payment-option-card">
-                        <i class="mdi mdi-wallet-giftcard" style="font-size: 2rem; color: #00A699;"></i>
-                        <div class="small mt-3"><strong>GoPay</strong></div>
-                      </div>
-                    </label>
+            <div class="card border mb-4">
+              <div class="card-body">
+                <h6 class="card-title mb-3">Pilih Metode Pembayaran</h6>
+                <div class="row g-3">
+                  <div class="col-12 col-sm-6 col-md-4">
+                    <div class="form-check h-100">
+                      <input class="form-check-input payment-method visually-hidden" type="radio" name="payment_method" id="gopay" value="gopay" required>
+                      <label class="form-check-label w-100 h-100" for="gopay">
+                        <div class="card border text-center py-4 h-100 payment-option-card">
+                          <i class="mdi mdi-wallet-giftcard" style="font-size: 2rem; color: #00A699;"></i>
+                          <div class="small mt-3"><strong>GoPay</strong></div>
+                        </div>
+                      </label>
+                    </div>
                   </div>
-                </div>
-                <div class="col-12 col-md-4">
-                  <div class="form-check h-100">
-                    <input class="form-check-input payment-method visually-hidden" type="radio" name="payment_method" id="dana" value="dana" required>
-                    <label class="form-check-label w-100 h-100" for="dana">
-                      <div class="card border text-center py-4 h-100 payment-option-card">
-                        <i class="mdi mdi-wallet-giftcard" style="font-size: 2rem; color: #3E54F3;"></i>
-                        <div class="small mt-3"><strong>Dana</strong></div>
-                      </div>
-                    </label>
+                  <div class="col-12 col-sm-6 col-md-4">
+                    <div class="form-check h-100">
+                      <input class="form-check-input payment-method visually-hidden" type="radio" name="payment_method" id="dana" value="dana" required>
+                      <label class="form-check-label w-100 h-100" for="dana">
+                        <div class="card border text-center py-4 h-100 payment-option-card">
+                          <i class="mdi mdi-wallet-giftcard" style="font-size: 2rem; color: #3E54F3;"></i>
+                          <div class="small mt-3"><strong>Dana</strong></div>
+                        </div>
+                      </label>
+                    </div>
                   </div>
-                </div>
-                <div class="col-12 col-md-4">
-                  <div class="form-check h-100">
-                    <input class="form-check-input payment-method visually-hidden" type="radio" name="payment_method" id="cash" value="cash" required>
-                    <label class="form-check-label w-100 h-100" for="cash">
-                      <div class="card border text-center py-4 h-100 payment-option-card">
-                        <i class="mdi mdi-cash" style="font-size: 2rem; color: #28A745;"></i>
-                        <div class="small mt-3"><strong>Cash</strong></div>
-                      </div>
-                    </label>
+                  <div class="col-12 col-sm-6 col-md-4">
+                    <div class="form-check h-100">
+                      <input class="form-check-input payment-method visually-hidden" type="radio" name="payment_method" id="cash" value="cash" required>
+                      <label class="form-check-label w-100 h-100" for="cash">
+                        <div class="card border text-center py-4 h-100 payment-option-card">
+                          <i class="mdi mdi-cash" style="font-size: 2rem; color: #28A745;"></i>
+                          <div class="small mt-3"><strong>Cash</strong></div>
+                        </div>
+                      </label>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div id="payment-qr" class="card p-3 mb-4">
-              <div class="d-flex align-items-center justify-content-between mb-3">
-                <div>
-                  <h6 class="mb-1">Scan kode QR untuk pembayaran</h6>
-                  <p class="mb-0 text-muted">Bayar via <strong id="selected-method-label">Pilih Metode</strong></p>
+            <div id="payment-qr" class="card border mb-4 shadow-sm">
+              <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between mb-3 flex-column flex-md-row">
+                  <div>
+                    <h6 class="mb-1">Scan kode QR untuk pembayaran</h6>
+                    <p class="mb-0 text-muted">Bayar via <strong id="selected-method-label">Pilih Metode</strong></p>
+                  </div>
+                  <span class="badge bg-secondary mt-3 mt-md-0" id="selected-method-badge">Belum dipilih</span>
                 </div>
-                <span class="badge bg-secondary" id="selected-method-badge">Belum dipilih</span>
-              </div>
-              <div class="row align-items-center">
-                <div class="col-md-4 text-center mb-3 mb-md-0">
-                  <img id="payment-qr-image" src="https://via.placeholder.com/250x250?text=Pilih+Metode" alt="QR Code Pembayaran" class="img-fluid rounded">
-                </div>
-                <div class="col-md-3">
-                  <p class="mb-1"><strong>ID Akun</strong></p>
-                  <p id="payment-account" class="mb-2">-</p>
-                  <p class="mb-1"><strong>Nama Penerima</strong></p>
-                  <p id="payment-name" class="mb-0">-</p>
+                <div class="row g-3 align-items-center">
+                  <div class="col-12 col-md-5 text-center">
+                    <img id="payment-qr-image" src="https://via.placeholder.com/250x250?text=Pilih+Metode" alt="QR Code Pembayaran" class="img-fluid rounded shadow-sm">
+                  </div>
+                  <div class="col-12 col-md-7">
+                    <div class="row g-2">
+                      <div class="col-12">
+                        <p class="mb-1 text-muted"><strong>ID Akun</strong></p>
+                        <p id="payment-account" class="mb-3 fs-6 fw-semibold">-</p>
+                      </div>
+                      <div class="col-12">
+                        <p class="mb-1 text-muted"><strong>Nama Penerima</strong></p>
+                        <p id="payment-name" class="mb-0 fs-6 fw-semibold">-</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div class="form-group mb-4">
-              <label class="form-label">Jumlah Pembayaran</label>
-              <div class="input-group input-group-lg">
-                <span class="input-group-text">Rp</span>
-                <input type="number" name="amount" class="form-control @error('amount') is-invalid @enderror" value="{{ old('amount', $order->total) }}" min="{{ $order->total }}" step="1" required>
+            <div class="card border mb-4">
+              <div class="card-body">
+                <label class="form-label">Jumlah Pembayaran</label>
+                <div class="input-group input-group-lg">
+                  <span class="input-group-text">Rp</span>
+                  <input type="number" name="amount" class="form-control @error('amount') is-invalid @enderror" value="{{ old('amount', $order->total) }}" min="{{ $order->total }}" step="1" required>
+                </div>
+                <small class="text-muted d-block mt-2">
+                  Minimal: Rp {{ number_format($order->total, 0, ',', '.') }}
+                </small>
+                @error('amount')
+                  <div class="invalid-feedback d-block">{{ $message }}</div>
+                @enderror
               </div>
-              <small class="text-muted d-block mt-2">
-                Minimal: Rp {{ number_format($order->total, 0, ',', '.') }}
-              </small>
-              @error('amount')
-                <div class="invalid-feedback d-block">{{ $message }}</div>
-              @enderror
             </div>
 
-            <button type="submit" class="btn btn-success btn-lg w-100">
-              <i class="mdi mdi-check-circle"></i> Konfirmasi Pembayaran
-            </button>
+            <div class="d-grid">
+              <button type="submit" class="btn btn-success btn-lg">
+                <i class="mdi mdi-check-circle"></i> Konfirmasi Pembayaran
+              </button>
+            </div>
           </form>
 
           <div class="mt-3 text-center">

@@ -6,7 +6,21 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">Laporan Penjualan</h4>
-          <p class="card-description">Grafik penjualan 30 hari terakhir dan ringkasan produk terbaik.</p>
+          <p class="card-description">Grafik penjualan berdasarkan rentang waktu yang dipilih.</p>
+
+          <form method="GET" action="{{ route('admin.reports.index') }}" class="row g-3 mb-4 align-items-end">
+            <div class="col-12 col-md-4">
+              <label class="form-label">Tanggal Mulai</label>
+              <input type="date" name="start_date" class="form-control" value="{{ old('start_date', optional($start)->format('Y-m-d')) }}">
+            </div>
+            <div class="col-12 col-md-4">
+              <label class="form-label">Tanggal Akhir</label>
+              <input type="date" name="end_date" class="form-control" value="{{ old('end_date', optional($end)->format('Y-m-d')) }}">
+            </div>
+            <div class="col-12 col-md-4">
+              <button type="submit" class="btn btn-primary w-100">Terapkan Filter</button>
+            </div>
+          </form>
 
           <div class="chart-container mb-4">
             <canvas id="salesChart"></canvas>
