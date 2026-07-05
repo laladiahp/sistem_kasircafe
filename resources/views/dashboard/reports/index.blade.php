@@ -11,11 +11,11 @@
           <form method="GET" action="{{ route('admin.reports.index') }}" class="row g-3 mb-4 align-items-end">
             <div class="col-12 col-md-4">
               <label class="form-label">Tanggal Mulai</label>
-              <input type="date" name="start_date" class="form-control" value="{{ old('start_date', optional($start)->format('Y-m-d')) }}">
+              <input type="date" name="start_date" class="form-control" value="{{ request()->query('start_date', optional($start)->format('Y-m-d')) }}">
             </div>
             <div class="col-12 col-md-4">
               <label class="form-label">Tanggal Akhir</label>
-              <input type="date" name="end_date" class="form-control" value="{{ old('end_date', optional($end)->format('Y-m-d')) }}">
+              <input type="date" name="end_date" class="form-control" value="{{ request()->query('end_date', optional($end)->format('Y-m-d')) }}">
             </div>
             <div class="col-12 col-md-4">
               <button type="submit" class="btn btn-primary w-100">Terapkan Filter</button>

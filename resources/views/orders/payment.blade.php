@@ -54,39 +54,27 @@
             <div class="card border mb-4">
               <div class="card-body">
                 <h6 class="card-title mb-3">Pilih Metode Pembayaran</h6>
-                <div class="row g-3">
-                  <div class="col-12 col-sm-6 col-md-4">
-                    <div class="form-check h-100">
-                      <input class="form-check-input payment-method visually-hidden" type="radio" name="payment_method" id="gopay" value="gopay" required>
-                      <label class="form-check-label w-100 h-100" for="gopay">
-                        <div class="card border text-center py-4 h-100 payment-option-card">
-                          <i class="mdi mdi-wallet-giftcard" style="font-size: 2rem; color: #00A699;"></i>
-                          <div class="small mt-3"><strong>GoPay</strong></div>
-                        </div>
-                      </label>
-                    </div>
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+                  <div class="col d-flex">
+                    <label class="payment-option-card d-flex flex-column justify-content-center align-items-center text-center w-100" for="gopay">
+                      <input class="payment-method visually-hidden" type="radio" name="payment_method" id="gopay" value="gopay" required>
+                      <i class="mdi mdi-wallet-giftcard text-teal"></i>
+                      <div class="small mt-3"><strong>GoPay</strong></div>
+                    </label>
                   </div>
-                  <div class="col-12 col-sm-6 col-md-4">
-                    <div class="form-check h-100">
-                      <input class="form-check-input payment-method visually-hidden" type="radio" name="payment_method" id="dana" value="dana" required>
-                      <label class="form-check-label w-100 h-100" for="dana">
-                        <div class="card border text-center py-4 h-100 payment-option-card">
-                          <i class="mdi mdi-wallet-giftcard" style="font-size: 2rem; color: #3E54F3;"></i>
-                          <div class="small mt-3"><strong>Dana</strong></div>
-                        </div>
-                      </label>
-                    </div>
+                  <div class="col d-flex">
+                    <label class="payment-option-card d-flex flex-column justify-content-center align-items-center text-center w-100" for="dana">
+                      <input class="payment-method visually-hidden" type="radio" name="payment_method" id="dana" value="dana" required>
+                      <i class="mdi mdi-wallet-giftcard text-primary"></i>
+                      <div class="small mt-3"><strong>Dana</strong></div>
+                    </label>
                   </div>
-                  <div class="col-12 col-sm-6 col-md-4">
-                    <div class="form-check h-100">
-                      <input class="form-check-input payment-method visually-hidden" type="radio" name="payment_method" id="cash" value="cash" required>
-                      <label class="form-check-label w-100 h-100" for="cash">
-                        <div class="card border text-center py-4 h-100 payment-option-card">
-                          <i class="mdi mdi-cash" style="font-size: 2rem; color: #28A745;"></i>
-                          <div class="small mt-3"><strong>Cash</strong></div>
-                        </div>
-                      </label>
-                    </div>
+                  <div class="col d-flex">
+                    <label class="payment-option-card d-flex flex-column justify-content-center align-items-center text-center w-100" for="cash">
+                      <input class="payment-method visually-hidden" type="radio" name="payment_method" id="cash" value="cash" required>
+                      <i class="mdi mdi-cash text-success"></i>
+                      <div class="small mt-3"><strong>Cash</strong></div>
+                    </label>
                   </div>
                 </div>
               </div>
@@ -222,7 +210,7 @@
     document.querySelectorAll('.payment-option-card').forEach(card => {
       card.classList.remove('payment-option-selected');
     });
-    const selectedCard = input.closest('.form-check').querySelector('.payment-option-card');
+    const selectedCard = document.querySelector(`label[for="${input.id}"]`);
     if (selectedCard) {
       selectedCard.classList.add('payment-option-selected');
     }
@@ -240,35 +228,43 @@
 
 <style>
   .payment-option-card {
-    min-height: 150px;
+    min-height: 160px;
     transition: transform .16s ease, border-color .16s ease, box-shadow .16s ease, background-color .16s ease;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: .75rem;
-    padding: 1.25rem 1rem;
+    gap: 1rem;
+    padding: 1.5rem 1.25rem;
+    border-radius: 1rem;
+    background-color: #ffffff;
   }
   .payment-option-card:hover {
     transform: translateY(-2px);
     border-color: #198754;
-    box-shadow: 0 12px 25px rgba(0, 0, 0, .06);
+    box-shadow: 0 16px 30px rgba(0, 0, 0, .08);
   }
   .payment-option-selected {
     border-color: #198754 !important;
-    background-color: #f3fbf6 !important;
-    box-shadow: 0 10px 28px rgba(25, 135, 84, .12);
+    background-color: #effaf1 !important;
+    box-shadow: 0 14px 26px rgba(25, 135, 84, .14);
   }
-  .payment-method-label {
-    cursor: pointer;
-    display: block;
+  .payment-option-card i {
+    font-size: 2rem;
   }
-  .payment-method-label .payment-option-card {
-    width: 100%;
+  .text-teal {
+    color: #00A699 !important;
+  }
+  .text-primary {
+    color: #3E54F3 !important;
+  }
+  .text-success {
+    color: #28A745 !important;
   }
   @media (max-width: 767.98px) {
     .payment-option-card {
-      min-height: 140px;
+      min-height: 150px;
+      padding: 1.25rem 1rem;
     }
   }
 </style>
