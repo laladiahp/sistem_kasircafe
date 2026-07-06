@@ -19,6 +19,14 @@
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png')}}" />
 
    <style>
+  .container-scroller {
+    overflow-x: hidden;
+  }
+
+  .page-body-wrapper {
+    overflow-x: hidden;
+  }
+
   .content-wrapper {
     padding: 1.5rem 1rem !important;
     width: 100%;
@@ -119,6 +127,27 @@
   }
   .sidebar .nav .nav-item .nav-link:hover {
       background-color: #FDFBF7 !important;
+  }
+
+  @media (max-width: 991.98px) {
+      .content-wrapper {
+          padding: 1rem !important;
+      }
+      .main-panel {
+          min-height: auto;
+      }
+  }
+
+  @media (max-width: 576px) {
+      .content-wrapper {
+          padding: 0.75rem !important;
+      }
+      .card {
+          border-radius: 0.85rem !important;
+      }
+      h1, h2, h3, h4, h5, .card-title {
+          line-height: 1.25;
+      }
   }
 </style>
   </head>
